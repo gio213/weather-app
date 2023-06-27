@@ -1,0 +1,3 @@
+api key 8647bf204b39049e6b810369f26c3e9c
+
+api api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}

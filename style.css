@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+    background-color: #D6D7DB
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftDiv {
+    width: 350px;
+    height: 80%;
+    background-color: #ffffff;
+    box-shadow: -10px 0px 15px -5px rgba(0, 0, 0, 0.25);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#searchImg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#searchImg:hover {
+    transform: scale(1.1);
+}
+
+#locationImg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#locationIms:hover {
+    transform: scale(1.1);
+}
+
+
+
+.inputDiv {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#cityInput {
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+
+}
+
+.currentDayTimeDiv {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+
+}
+
+.line {
+    width: 80%;
+    height: 2px;
+    background-color: #F7F6F9;
+
+}
+
+
+.descriptionDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.unsplasImgDiv {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#unsplashImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px -5px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+
+#locationDiv {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+.rightDiv {
+    width: 650px;
+    height: 80%;
+    background-color: #F7F6F9;
+    box-shadow: 10px 0px 15px -5px rgba(0, 0, 0, 0.25);
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.featureForecast {
+    width: 100%;
+    display: flex;
+}
+
+#forecastDiv {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px -5px rgba(0, 0, 0, 0.25);
+
+}
