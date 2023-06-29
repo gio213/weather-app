@@ -32,6 +32,7 @@ const pressureTxt = document.getElementById("pressureTxt");
 const countryIcon = document.getElementById("countryIcon");
 const countryTxt = document.getElementById("countryTxt");
 const forecastMain = document.querySelectorAll("#forecastMain");
+const todaysHilight = document.getElementById("todaysHilight");
 const date = new Date();
 let weatherApiKey = "8647bf204b39049e6b810369f26c3e9c";
 let uNsplashApiKey = "zBVIB3obWPPTBMPk9nU7mSOqlsUAa3uY2TNlZhvegbY";
@@ -236,6 +237,7 @@ const calculateNextfiveDays = () => {
 
 // displaying 5 days forecast
 const displayFiveDaysForecast = (data) => {
+  todaysHilight.style.display = "block";
   forecastWeelDayP.forEach((day, index) => {
     day.textContent = new Date(nextFiveDays[index]).toLocaleString("en-us", {
       weekday: "long",
