@@ -18,10 +18,37 @@ const forecastTemp = document.querySelectorAll("#forecastTemp");
 const forecastDiv = document.querySelectorAll(".forecastDiv");
 const errorTxt = document.getElementById("errorTxt");
 const currentFeelsLike = document.getElementById("currentFeelsLike");
+const windTxt = document.getElementById("windTxt");
+const bottomWindImg = document.getElementById("bottomWindImg");
+const bottomCardDiv = document.querySelectorAll(".bottomCardDiv");
+const sunRiseIcon = document.getElementById("sunRiseIcon");
+const sunRiseTxt = document.getElementById("sunRiseTxt");
+const sunSetTxt = document.getElementById("sunSetTxt");
+const humidityIcon = document.getElementById("humidityIcon");
+const humidityTxt = document.getElementById("humidityTxt");
+const visibilityTxt = document.getElementById("visibilityTxt");
+const pressureIcon = document.getElementById("pressureIcon");
+const pressureTxt = document.getElementById("pressureTxt");
+const countryIcon = document.getElementById("countryIcon");
+const countryTxt = document.getElementById("countryTxt");
+const forecastMain = document.querySelectorAll("#forecastMain");
 const date = new Date();
 let weatherApiKey = "8647bf204b39049e6b810369f26c3e9c";
 let uNsplashApiKey = "zBVIB3obWPPTBMPk9nU7mSOqlsUAa3uY2TNlZhvegbY";
 let nextFiveDays = [];
+// getting current date and time for to compare with forecast date and time
+const getCurrentDate = () => {
+  let currentDate = new Date();
+  let year = currentDate.getFullYear();
+  let month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  let day = String(currentDate.getDate()).padStart(2, "0");
+  let hours = String(currentDate.getHours()).padStart(2, "0");
+  let minutes = String(currentDate.getMinutes()).padStart(2, "0");
+  let seconds = String(currentDate.getSeconds()).padStart(2, "0");
+  let formattedDate = `${year}-${month}-${day} `;
+  return formattedDate;
+};
+
 currentDateTime.textContent =
   new Date().toLocaleString("en-us", {
     weekday: "long",
@@ -69,6 +96,7 @@ const fetchCurrentWeather = async (currentUrl, unsplashUrl) => {
   fetch(currentUrl).then((Response) => {
     if (Response.ok) {
       Response.json().then((data) => {
+        console.log(data);
         data;
         fetch(unsplashUrl).then((Response) => {
           if (Response.ok) {
@@ -122,9 +150,40 @@ const displeyCurrentWeather = (data, unsplashData) => {
     unsplashImg.src = unsplashData.results[0].urls.regular;
   }
   unsplashData;
+  bottomCardDiv.forEach((item) => {
+    item.style.display = "flex";
+  });
+  windTxt.textContent = `${data.wind.speed} km/h`;
+  bottomWindImg.src = "./assets/wind-icon.gif";
+  sunRiseIcon.src = "./assets/sunrise-icon.gif";
+  // sunRise.textContent = data.sys.sunrise;
+  // sunSet.textContent = data.sys.sunset;
+  let sunRise = data.sys.sunrise * 1000;
+  let sunSet = data.sys.sunset * 1000;
+  let sunRiseDate = new Date(sunRise);
+  let sunSetDate = new Date(sunSet);
+  let sunRiseTime = sunRiseDate.toLocaleString("en-us", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  let sunSetTime = sunSetDate.toLocaleString("en-us", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  sunRiseTxt.textContent = `Sunrise:${sunRiseTime} `;
+  sunSetTxt.textContent = `Sunset:${sunSetTime} `;
+  humidityIcon.src = "./assets/humidity-icon.gif";
+  humidityTxt.textContent = `${data.main.humidity}%`;
+  visibilityTxt.textContent = `${data.visibility / 1000} km`;
+  pressureIcon.src = "./assets/humidity-icon.gif";
+  pressureTxt.textContent = `${data.main.pressure} hPa`;
+  countryIcon.src = "./assets/country-icon.png";
+  countryTxt.textContent = data.sys.country;
 };
-// getting current location pressing location btn , for this moment I have problem
 
+// getting current location pressing location btn , for this moment I have problem
 const currentLocation = () => {
   const success = (position) => {
     const latitude = position.coords.latitude;
@@ -161,7 +220,7 @@ const currentLocation = () => {
 };
 
 locationImg.addEventListener("click", currentLocation);
-
+// calculating next 5 weekdays
 const calculateNextfiveDays = () => {
   let date = new Date();
   for (let i = 0; i < 5; i++) {
@@ -175,35 +234,37 @@ const calculateNextfiveDays = () => {
   return nextFiveDays;
 };
 
+// displaying 5 days forecast
 const displayFiveDaysForecast = (data) => {
-  data;
   forecastWeelDayP.forEach((day, index) => {
     day.textContent = new Date(nextFiveDays[index]).toLocaleString("en-us", {
       weekday: "long",
     });
   });
-
   forecastDiv.forEach((div) => {
     div.style.display = "flex";
   });
-  forecastImg.forEach((img, index) => {
-    img.src = `https://openweathermap.org/img/wn/${
-      data.list[index + 4].weather[0].icon
-    }.png`;
-    [index + 4 * 4];
-  });
-  // forecastTemp.forEach((temp, index) => {
-  //   let avaregeTemp =
-  //     (data.list[index].main.temp + data.list[index].main.temp) / 2;
 
-  //   temp.textContent = `${Math.round(avaregeTemp)}°C`;
-  // });
-  for (let i = 4; i < data.list.length; i++) {
-    data.list[i].main.temp;
-    let maxtemp = data.list[i].main.temp_max;
-    let mintemp = data.list[i].main.temp_min;
-    let avaregeTemp = (maxtemp + mintemp) / 2;
-    avaregeTemp;
-    i;
-  }
+  data.list.forEach((item, index) => {
+    let dateFromList = new Date(item.dt_txt);
+    const dateString = dateFromList.toISOString().split("T")[0];
+    // console.log(dateString);
+
+    let today = new Date().toISOString().split("T")[0];
+    console.log(today);
+
+    if (dateString == today) {
+      return;
+    } else {
+      forecastImg.forEach((img, index) => {
+        img.src = `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}.png`;
+      });
+      forecastTemp.forEach((temp, index) => {
+        temp.textContent = `${Math.round(data.list[index].main.temp)}°C`;
+      });
+      forecastMain.forEach((main, index) => {
+        main.textContent = data.list[index].weather[0].description;
+      });
+    }
+  });
 };
