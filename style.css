@@ -11,15 +11,16 @@ body {
 
 .container {
     width: 100%;
-    height: 100vh;
+    height: 550px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 
 .leftDiv {
     width: 350px;
-    height: 80%;
+    height: 100%;
     background-color: #ffffff;
     box-shadow: -10px 0px 15px -5px rgba(0, 0, 0, 0.25);
     border-top-left-radius: 25px;
@@ -28,12 +29,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
+    padding: 20px;
 }
 
 #searchImg {
     width: 20px;
-    height: 20px;
     cursor: pointer;
 }
 
@@ -43,7 +43,6 @@ body {
 
 #locationImg {
     width: 20px;
-    height: 20px;
     cursor: pointer;
 }
 
@@ -53,7 +52,6 @@ body {
 
 .forecastContainer {
     width: 100%;
-    height: 160px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,7 +73,6 @@ body {
 
 .forecastDiv {
     width: 20%;
-    height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,7 +92,6 @@ body {
 
 .inputDiv {
     width: 100%;
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,7 +100,6 @@ body {
 
 #cityInput {
     width: 50%;
-    height: 30px;
     border-radius: 5px;
     border: none;
     outline: none;
@@ -117,7 +112,6 @@ body {
 
 .currentDayTimeDiv {
     width: 100%;
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,7 +122,6 @@ body {
 
 .line {
     width: 80%;
-    height: 2px;
     background-color: #F7F6F9;
     display: none;
 
@@ -152,9 +145,10 @@ body {
 
 }
 
+
 #unsplashImg {
     width: 90%;
-    height: 90%;
+    height: 100%;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0px 0px 15px -5px rgba(0, 0, 0, 0.25);
@@ -167,7 +161,6 @@ body {
 
 #locationDiv {
     width: 35px;
-    height: 35px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -179,7 +172,7 @@ body {
 
 .rightDiv {
     width: 550px;
-    height: 80%;
+    height: 100%;
     background-color: #F7F6F9;
     box-shadow: 10px 0px 15px -5px rgba(0, 0, 0, 0.25);
     border-top-right-radius: 25px;
@@ -188,6 +181,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    padding: 20px;
 }
 
 .featureForecast {
@@ -207,7 +201,6 @@ body {
 
 .bottomDiv {
     width: 100%;
-    height: 380px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -247,4 +240,51 @@ body {
 
 #todaysHilight {
     display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        height: fit-content;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .leftDiv {
+        width: 90%;
+        border-radius: 25px;
+    }
+
+    .rightDiv {
+        width: 90%;
+        border-radius: 25px;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .forecastContainer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .forecastDiv {
+        width: 100%;
+
+    }
+
+    .bottomDiv {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 10px;
+    }
+
+    .bottomCardDiv,
+    .forecastContainer {
+        width: 70%;
+
+    }
+
 }

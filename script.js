@@ -260,6 +260,7 @@ const displayFiveDaysForecast = (data) => {
     if (dateString == today) {
       return;
     } else {
+      console.log(item);
       forecastImg.forEach((img, index) => {
         img.src = `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}.png`;
       });
