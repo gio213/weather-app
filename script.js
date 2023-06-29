@@ -150,6 +150,11 @@ const displeyCurrentWeather = (data, unsplashData) => {
   } else {
     errorTxt.textContent = "";
     unsplashImg.src = unsplashData.results[0].urls.regular;
+    console.log(unsplashData);
+    setInterval(() => {
+      let randomNum = Math.floor(Math.random() * unsplashData.results.length);
+      unsplashImg.src = unsplashData.results[randomNum].urls.regular;
+    }, 5000);
   }
   unsplashData;
   bottomCardDiv.forEach((item) => {
@@ -256,11 +261,9 @@ const displayFiveDaysForecast = (data) => {
 
     let today = new Date().toISOString().split("T")[0];
     console.log(today);
-
     if (dateString == today) {
       return;
     } else {
-      console.log(item);
       forecastImg.forEach((img, index) => {
         img.src = `https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}.png`;
       });
