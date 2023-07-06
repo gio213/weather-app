@@ -279,25 +279,6 @@ const displayFiveDaysForecast = (data) => {
   forecastDiv.forEach((div) => {
     div.style.display = "flex";
   });
-
-  // for (let i = 0; i < data.list.length; i++) {
-  //   let dateFromList = new Date(data.list[i].dt_txt);
-  //   let today = new Date();
-  //   if (dateFromList.getDate() === today.getDate()) {
-  //      (data.list[i].dt_txt);
-  //   } else {
-  //     forecastData.day1.day = dateFromList.toLocaleString("en-us", {
-  //       weekday: "long",
-  //     });
-  //     if (nextDays.day1 === data.list[i].dt_txt) {
-  //       forecastData.day1.minTemp = data.list[i].main.temp_min;
-  //       forecastData.day1.maxTemp = data.list[i].main.temp_max;
-  //       forecastData.day1.icon = data.list[i].weather[0].icon;
-  //       forecastData.day1.description = data.list[i].weather[0].description;
-  //     }
-  //   }
-  //    (forecastData);
-  // }
   let dataWithoutToday = [];
   data.list.forEach((element, index) => {
     let dateFromList = new Date(data.list[index].dt_txt);
@@ -417,7 +398,7 @@ const displayFiveDaysForecast = (data) => {
   }
   for (let i = 0; i < extracTedData.day5.length; i++) {
     iconDay5.push(extracTedData.day5[i].weather[0].icon);
-    forecastImg[4].src = `http://openweathermap.org/img/wn/${iconDay5[5]}.png`;
+    forecastImg[4].src = `http://openweathermap.org/img/wn/${iconDay5[2]}.png`;
   }
   // get description for each day
   let descriptionDay1 = [];
@@ -444,6 +425,6 @@ const displayFiveDaysForecast = (data) => {
   }
   for (let i = 0; i < extracTedData.day5.length; i++) {
     descriptionDay5.push(extracTedData.day5[i].weather[0].main);
-    forecastMain[4].textContent = descriptionDay5[5];
+    forecastMain[4].textContent = descriptionDay5[2];
   }
 };
