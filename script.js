@@ -217,20 +217,20 @@ const displeyCurrentWeather = (data, unsplashData) => {
 };
 
 // getting current location pressing location btn , for this moment I have problem
-const currentLocation = () => {
+const currentLocation = async () => {
   const success = (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    const url = ` https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=8647bf204b39049e6b810369f26c3e9c`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=8647bf204b39049e6b810369f26c3e9c`;
     const currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=8647bf204b39049e6b810369f26c3e9c`;
 
     getWeather(url);
     calculateNextfiveDays();
     fetch(
       `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-    ).then((Response) => {
-      if (Response.ok) {
-        Response.json().then((data) => {
+    ).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
           data;
           const unsplashUrl = `https://api.unsplash.com/search/photos?query=${data.city}&client_id=${Data.uNsplashApiKey}`;
           fetchCurrentWeather(currentUrl, unsplashUrl);
@@ -248,7 +248,14 @@ const currentLocation = () => {
   if (!navigator.geolocation) {
     alert("Geolocation is not supported by your browser");
   } else {
-    navigator.geolocation.getCurrentPosition(success, error);
+    try {
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+      success(position);
+    } catch (e) {
+      error();
+    }
   }
 };
 
